@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java 加密," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、主要的加密方式代码提供方 JDK：代码在java安装目录下的jre\lib\jce.jar包里;  CC：Apache公司提供的org.apache.commons.codec  主页：http://commons.apache.org/proper/commons-codec/  BC：org.bouncecastle  主页：http://www.bouncycastle.org/java">
+<meta name="keywords" content="Java 加密">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 加密的常见方式">
+<meta property="og:url" content="http://yoursite.com/2018/07/11/encryption/index.html">
+<meta property="og:site_name" content="Codes Zone of KarlingLee">
+<meta property="og:description" content="一、主要的加密方式代码提供方 JDK：代码在java安装目录下的jre\lib\jce.jar包里;  CC：Apache公司提供的org.apache.commons.codec  主页：http://commons.apache.org/proper/commons-codec/  BC：org.bouncecastle  主页：http://www.bouncycastle.org/java">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/uploads/images/base64.jpg">
+<meta property="og:updated_time" content="2018-07-11T13:19:11.294Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java 加密的常见方式">
+<meta name="twitter:description" content="一、主要的加密方式代码提供方 JDK：代码在java安装目录下的jre\lib\jce.jar包里;  CC：Apache公司提供的org.apache.commons.codec  主页：http://commons.apache.org/proper/commons-codec/  BC：org.bouncecastle  主页：http://www.bouncycastle.org/java">
+<meta name="twitter:image" content="http://yoursite.com/uploads/images/base64.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'karlinglee93'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/07/11/encryption/"/>
+
+
+
+
+
+  <title>Java 加密的常见方式 | Codes Zone of KarlingLee</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Codes Zone of KarlingLee</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/11/encryption/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Karling Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Codes Zone of KarlingLee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java 加密的常见方式</h1>
+        
+
+        <div class="post-meta">
+
+            
+            
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-11T20:55:38+08:00">
+                2018-07-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="一、主要的加密方式代码提供方"><a href="#一、主要的加密方式代码提供方" class="headerlink" title="一、主要的加密方式代码提供方"></a>一、主要的加密方式代码提供方</h1><ul>
+<li>JDK：代码在java安装目录下的jre\lib\jce.jar包里; </li>
+<li>CC：Apache公司提供的org.apache.commons.codec </li>
+<li>主页：<a href="http://commons.apache.org/proper/commons-codec/" target="_blank" rel="noopener">http://commons.apache.org/proper/commons-codec/</a> </li>
+<li>BC：org.bouncecastle </li>
+<li>主页：<a href="http://www.bouncycastle.org/java.html" target="_blank" rel="noopener">http://www.bouncycastle.org/java.html</a> </li>
+</ul>
+<p>基本常用的使用JDK就够了。</p>
+<p>总结类文章，把一些常用的Java加密技术和核心代码写在这边，供参考。<br>首先大家要记住现代密码学最重要的原则柯克霍夫原则：<br>数据的安全<code>基于密钥而不是算法的保密</code>。也就是说即使密码系统的任何细节已为人悉知，只要密匙未洩漏，它也应是安全的。</p>
+<p>具体来说：<br>系统必须可用，非数学上不可译码。<br>系统不一定要保密，可以轻易落入敌人手中。<br>密匙必须可以不经书写的资料交换和记忆，且双方可以改变密匙。<br>系统可以用于电讯。<br>系统可以转移位置，它的功能必须不用经过几个人之手才可达到。<br>系统容易使用，不要求使用者的脑力过份操劳或有很多的规则。</p>
+<h1 id="二、Base64"><a href="#二、Base64" class="headerlink" title="二、Base64"></a>二、Base64</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>从现在加密算法的复杂性来看Base64这种都不好意思说自己是加密，不过对于完全不懂计算机的人来说也够用了。采用Base64编码具有不可读性，即所编码的数据不会被人用肉眼所直接看到。</p>
+<p>Base64编码一般用于url的处理，或者说任何你不想让普通人一眼就知道是啥的东西都可以用Base64编码处理后再发布在网络上。</p>
+<p><img src="/uploads/images/base64.jpg" alt="Alt text"></p>
+<p>Base64是网络上最常见的用于传输8Bit字节代码的编码方式之一，大家可以查看RFC2045～RFC2049，上面有MIME的详细规范。Base64编码可用于在HTTP环境下传递较长的标识信息。例如，在Java Persistence系统Hibernate中，就采用了Base64来将一个较长的唯一标识符（一般为128-bit的UUID）编码为一个字符串，用作HTTP表单和HTTP GET URL中的参数。在其他应用程序中，也常常需要把二进制数据编码为适合放在URL（包括隐藏表单域）中的形式。此时，采用Base64编码具有不可读性，即所编码的数据不会被人用肉眼所直接到。（来源百度百科）</p>
+<h2 id="java实现代码"><a href="#java实现代码" class="headerlink" title="java实现代码"></a>java实现代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.cn;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sun.misc.BASE64Decoder;</span><br><span class="line"><span class="keyword">import</span> sun.misc.BASE64Encoder;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">BASE64的加密解密是双向的，可以求反解.</span></span><br><span class="line"><span class="comment">BASE64Encoder和BASE64Decoder是非官方JDK实现类。虽然可以在JDK里能找到并使用，但是在API里查不到。</span></span><br><span class="line"><span class="comment">JRE 中 sun 和 com.sun 开头包的类都是未被文档化的，他们属于 java, javax 类库的基础，其中的实现大多数与底层平台有关，</span></span><br><span class="line"><span class="comment">一般来说是不推荐使用的。 </span></span><br><span class="line"><span class="comment">BASE64 严格地说，属于编码格式，而非加密算法 </span></span><br><span class="line"><span class="comment">主要就是BASE64Encoder、BASE64Decoder两个类，我们只需要知道使用对应的方法即可。</span></span><br><span class="line"><span class="comment">另，BASE加密后产生的字节位数是8的倍数，如果不够位数以=符号填充。 </span></span><br><span class="line"><span class="comment">BASE64 </span></span><br><span class="line"><span class="comment">按照RFC2045的定义，Base64被定义为：Base64内容传送编码被设计用来把任意序列的8位字节描述为一种不易被人直接识别的形式。</span></span><br><span class="line"><span class="comment">（The Base64 Content-Transfer-Encoding is designed to represent arbitrary sequences of octets in a form that need not be humanly readable.） </span></span><br><span class="line"><span class="comment">常见于邮件、http加密，截取http信息，你就会发现登录操作的用户名、密码字段通过BASE64加密的。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BASE64</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * </span></span><br><span class="line"><span class="comment">    * BASE64解密</span></span><br><span class="line"><span class="comment">    * </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> key</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    * <span class="doctag">@throws</span> IOException</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] decryptBASE64(String key) <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">new</span> BASE64Decoder().decodeBuffer(key));</span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * </span></span><br><span class="line"><span class="comment">    * BAES64加密</span></span><br><span class="line"><span class="comment">    * </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> key</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">encryptBASE64</span><span class="params">(<span class="keyword">byte</span>[] key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">new</span> BASE64Encoder()).encodeBuffer(key);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String str = <span class="string">"12345678"</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            String result_1 = BASE64.encryptBASE64(str.getBytes());</span><br><span class="line">            System.out.println(<span class="string">"=====加密数据====="</span> + result_1);</span><br><span class="line">            <span class="keyword">byte</span> result_2[] = BASE64.decryptBASE64(result_1);</span><br><span class="line">            String str_2 = <span class="keyword">new</span> String(result_2);</span><br><span class="line">            System.out.println(<span class="string">"=====解密数据====="</span> + str_2);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        <span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="MD5"><a href="#MD5" class="headerlink" title="MD5"></a>MD5</h1><h2 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h2><p>MD5即Message-Digest Algorithm 5（信息-摘要算法5），用于确保信息传输完整一致。是计算机广泛使用的杂凑算法之一（又译摘要算法、哈希算法），主流编程语言普遍已有MD5实现。</p>
+<p>将数据（如汉字）运算为另一固定长度值，是杂凑算法的基础原理，MD5的前身有MD2、MD3和MD4。广泛用于加密和解密技术，常用于文件校验。不管文件多大，经过MD5后都能生成唯一的MD5值。好比现在的ISO校验，都是MD5校验。怎么用？当然是把ISO经过MD5后产生MD5的值。一般下载linux-ISO的朋友都见过下载链接旁边放<br>着MD5的串。就是用来验证文件是否一致的。</p>
+<h2 id="java实现代码-1"><a href="#java实现代码-1" class="headerlink" title="java实现代码"></a>java实现代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.cn;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.security.MessageDigest;</span><br><span class="line"><span class="keyword">import</span> java.security.NoSuchAlgorithmException;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">MD5(Message Digest algorithm 5，信息摘要算法) </span></span><br><span class="line"><span class="comment">通常我们不直接使用上述MD5加密。通常将MD5产生的字节数组交给BASE64再加密一把，得到相应的字符串</span></span><br><span class="line"><span class="comment">Digest:汇编</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MD5</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String KEY_MD5 = <span class="string">"MD5"</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">getResult</span><span class="params">(String inputStr)</span> <span class="keyword">throws</span> NoSuchAlgorithmException </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"=====加密前的数据====="</span> + inputStr);</span><br><span class="line">        MessageDigest md = MessageDigest.getInstance(KEY_MD5);</span><br><span class="line">        <span class="keyword">byte</span>[] inputData = inputStr.getBytes();</span><br><span class="line">        System.out.println(<span class="string">"=====MD5加密后====="</span> + md.digest(inputData).toString());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            String inputStr = <span class="string">"12345678"</span>;   </span><br><span class="line">            getResult(inputStr);</span><br><span class="line">       &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">           e.printStackTrace();</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="MD5算法具有以下特点："><a href="#MD5算法具有以下特点：" class="headerlink" title="MD5算法具有以下特点："></a>MD5算法具有以下特点：</h2><ol>
+<li>压缩性：任意长度的数据，算出的MD5值长度都是固定的。</li>
+<li>容易计算：从原数据计算出MD5值很容易。</li>
+<li>抗修改性：对原数据进行任何改动，哪怕只修改1个字节，所得到的MD5值都有很大区别。</li>
+<li>弱抗碰撞：已知原数据和其MD5值，想找到一个具有相同MD5值的数据（即伪造数据）是非常困难的。</li>
+<li>强抗碰撞：想找到两个不同的数据，使它们具有相同的MD5值，是非常困难的。</li>
+</ol>
+<p>MD5的作用是让大容量信息在用数字签名软件签署私人密钥前被”压缩”成一种保密的格式（就是把一个任意长度的字节串变换成一定长的十六进制数字串）。除了MD5以外，其中比较有名的还有sha-1、RIPEMD以及Haval等。</p>
+<h1 id="SHA"><a href="#SHA" class="headerlink" title="SHA"></a>SHA</h1><h2 id="简介-2"><a href="#简介-2" class="headerlink" title="简介"></a>简介</h2><p>安全哈希算法（Secure Hash Algorithm）主要适用于数字签名标准（Digital Signature Standard DSS）里面定义的数字签名算法（Digital Signature Algorithm DSA）。<br>对于长度小于2^64位的消息，SHA1会产生一个160位的消息摘要。</p>
+<p>该算法经过加密专家多年来的发展和改进已日益完善，并被广泛使用。该算法的思想是接收一段明文，然后以一种不可逆的方式将它转换成一段（通常更小）密文，也可以简单的理解为取一串输入码（称为预映射或信息），并把它们转化为长度较短、位数固定的输出序列即散列值（也称为信息摘要或信息认证代码）的过程。</p>
+<p>散列函数值可以说是对明文的一种”指纹”或是”摘要”所以对散列值的数字签名就可以视为对此明文的数字签名。</p>
+<h2 id="java实现代码-2"><a href="#java实现代码-2" class="headerlink" title="java实现代码"></a>java实现代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.cn;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.math.BigInteger;</span><br><span class="line"><span class="keyword">import</span> java.security.MessageDigest;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SHA</span> </span>&#123;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">SHA(Secure Hash Algorithm，安全散列算法），数字签名等密码学应用中重要的工具，</span></span><br><span class="line"><span class="comment">被广泛地应用于电子商务等信息安全领域。虽然，SHA与MD5通过碰撞法都被破解了， </span></span><br><span class="line"><span class="comment">但是SHA仍然是公认的安全加密算法，较之MD5更为安全</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String KEY_SHA = <span class="string">"SHA"</span>;   </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span>  String  <span class="title">getResult</span><span class="params">(String inputStr)</span></span>&#123;</span><br><span class="line">        BigInteger sha =<span class="keyword">null</span>;</span><br><span class="line">        System.out.println(<span class="string">"=======加密前的数据:"</span>+inputStr);</span><br><span class="line">        <span class="keyword">byte</span>[] inputData = inputStr.getBytes();   </span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">             MessageDigest messageDigest = MessageDigest.getInstance(KEY_SHA);  </span><br><span class="line">             messageDigest.update(inputData);</span><br><span class="line">             sha = <span class="keyword">new</span> BigInteger(messageDigest.digest());   </span><br><span class="line">             System.out.println(<span class="string">"SHA加密后:"</span> + sha.toString(<span class="number">32</span>));   </span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;e.printStackTrace();&#125;</span><br><span class="line">        <span class="keyword">return</span> sha.toString(<span class="number">32</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">             String inputStr = <span class="string">"简单加密"</span>;   </span><br><span class="line">             getResult(inputStr);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="SHA-1与MD5的比较"><a href="#SHA-1与MD5的比较" class="headerlink" title="SHA-1与MD5的比较"></a>SHA-1与MD5的比较</h1><p>因为二者均由MD4导出，SHA-1和MD5彼此很相似。相应的，他们的强度和其他特性也是相似，<br>但还有以下几点不同：</p>
+<ol>
+<li><p>对强行攻击的安全性：最显著和最重要的区别是SHA-1摘要比MD5摘要长32 位。使用强行技术，产生任何一个报文使其摘要等于给定报摘要的难度对MD5是2^128数量级的操作，而对SHA-1则是2^160数量级的操作。这样，SHA-1对强行攻击有更大的强度。</p>
+</li>
+<li><p>对密码分析的安全性：由于MD5的设计，易受密码分析的攻击，SHA-1显得不易受这样的攻击。</p>
+</li>
+<li><p>速度：在相同的硬件上，SHA-1的运行速度比MD5慢。</p>
+</li>
+</ol>
+<h1 id="HMAC"><a href="#HMAC" class="headerlink" title="HMAC"></a>HMAC</h1><h2 id="简介-3"><a href="#简介-3" class="headerlink" title="简介"></a>简介</h2><p>HMAC(Hash Message Authentication Code，散列消息鉴别码，基于密钥的Hash算法的认证协议。</p>
+<p>消息鉴别码实现鉴别的原理是，用公开函数和密钥产生一个固定长度的值作为认证标识，用这个标识鉴别消息的完整性。使用一个密钥生成一个固定大小的小数据块，即MAC，并将其加入到消息中，然后传输。接收方利用与发<br>送方共享的密钥进行鉴别认证等。</p>
+<h2 id="java实现代码-3"><a href="#java实现代码-3" class="headerlink" title="java实现代码"></a>java实现代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.cn;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.crypto.KeyGenerator;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.Mac;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.SecretKey;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.spec.SecretKeySpec;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">HMAC </span></span><br><span class="line"><span class="comment">HMAC(Hash Message Authentication Code)散列消息鉴别码，基于密钥的Hash算法的认证协议。</span></span><br><span class="line"><span class="comment">消息鉴别码实现鉴别的原理是，用公开函数和密钥产生一个固定长度的值作为认证标识，用这个标识鉴别消息的完整性。</span></span><br><span class="line"><span class="comment">使用一个密钥生成一个固定大小的小数据块，</span></span><br><span class="line"><span class="comment">即MAC，并将其加入到消息中，然后传输。接收方利用与发送方共享的密钥进行鉴别认证等。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HMAC</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">bytesToHexString</span><span class="params">(<span class="keyword">byte</span>[] src)</span></span>&#123;</span><br><span class="line">        StringBuilder stringBuilder = <span class="keyword">new</span> StringBuilder(<span class="string">""</span>);</span><br><span class="line">        <span class="keyword">if</span> (src == <span class="keyword">null</span> || src.length &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; src.length; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> v = src[i] &amp; <span class="number">0xFF</span>;</span><br><span class="line">            String hv = Integer.toHexString(v);</span><br><span class="line">            <span class="keyword">if</span> (hv.length() &lt; <span class="number">2</span>) &#123;</span><br><span class="line">                stringBuilder.append(<span class="number">0</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            stringBuilder.append(hv);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> stringBuilder.toString();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] getSecretKey() <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="comment">// 秘钥生成器keyGenerator, 可填入 HmacSHA1，HmacSHA256 等</span></span><br><span class="line">        KeyGenerator keyGenerator = KeyGenerator.getInstance(<span class="string">"HmacMD5"</span>); </span><br><span class="line">        SecretKey key = keyGenerator.generateKey();</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">byte</span>[] keyBytes = key.getEncoded();</span><br><span class="line">        <span class="keyword">return</span> keyBytes;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">encryptHmac</span><span class="params">(<span class="keyword">byte</span>[] key, <span class="keyword">byte</span>[] data)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        SecretKey secretKey = <span class="keyword">new</span> SecretKeySpec(key, <span class="string">"HmacMD5"</span>);</span><br><span class="line"></span><br><span class="line">        Mac mac = Mac.getInstance(<span class="string">"HmacMD5"</span>);</span><br><span class="line">        mac.init(secretKey);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">byte</span>[] resultBytes = mac.doFinal(data);</span><br><span class="line">        String resultString = bytesToHexString(resultBytes);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> resultString;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        String str = <span class="string">"12345678"</span>;</span><br><span class="line">        System.out.println(encryptHmac(getSecretKey(), str.getBytes()));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java-加密/" rel="tag"># Java 加密</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/08/职业规划/" rel="next" title="抉择">
+                <i class="fa fa-chevron-left"></i> 抉择
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/images/avatar.jpg"
+                alt="Karling Lee" />
+            
+              <p class="site-author-name" itemprop="name">Karling Lee</p>
+              <p class="site-description motion-element" itemprop="description">Java, Web, AI</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tages/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、主要的加密方式代码提供方"><span class="nav-number">1.</span> <span class="nav-text">一、主要的加密方式代码提供方</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、Base64"><span class="nav-number">2.</span> <span class="nav-text">二、Base64</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">2.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java实现代码"><span class="nav-number">2.2.</span> <span class="nav-text">java实现代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MD5"><span class="nav-number">3.</span> <span class="nav-text">MD5</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介-1"><span class="nav-number">3.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java实现代码-1"><span class="nav-number">3.2.</span> <span class="nav-text">java实现代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MD5算法具有以下特点："><span class="nav-number">3.3.</span> <span class="nav-text">MD5算法具有以下特点：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SHA"><span class="nav-number">4.</span> <span class="nav-text">SHA</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介-2"><span class="nav-number">4.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java实现代码-2"><span class="nav-number">4.2.</span> <span class="nav-text">java实现代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SHA-1与MD5的比较"><span class="nav-number">5.</span> <span class="nav-text">SHA-1与MD5的比较</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HMAC"><span class="nav-number">6.</span> <span class="nav-text">HMAC</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介-3"><span class="nav-number">6.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java实现代码-3"><span class="nav-number">6.2.</span> <span class="nav-text">java实现代码</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Karling Lee</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
