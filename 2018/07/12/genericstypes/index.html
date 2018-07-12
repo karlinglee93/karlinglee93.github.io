@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="泛型简介主要功能：让类型也能够作为参数，并在使用时确定参数。 为什么要使用泛型：因为列表中可以放入任意类型的元素，所以，一个元素放入再取出来之后，也就被抹去了原有的类型信息，被当作了Object 类型。想要恢复原有的类型，必须进行强制类型转换。如果不能确定元素确切的类型，那么强制类型转换就会有一个ClasCastException 异常。所以，强制类型转换不是一个鼓励使用的功能，我们可以使用泛型来">
+<meta name="description" content="泛型简介主要功能：让类型也能够作为参数，并在使用时确定参数。 为什么要使用泛型：因为列表中可以放入任意类型的元素，所以，一个元素放入再取出来之后，也就被抹去了原有的类型信息，被当作了Object 类型。想要恢复原有的类型，必须进行强制类型转换。如果不能确定元素确切的类型，那么强制类型转换就会有一个ClasCastException 异常。即，强制转换类型的错误只有在程序运行的时候才能看到。所以，强">
 <meta name="keywords" content="Java 类,Java 集合类框架,Java 泛型">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java 泛型">
 <meta property="og:url" content="http://yoursite.com/2018/07/12/genericstypes/index.html">
-<meta property="og:site_name" content="Codes Zone of KarlingLee">
-<meta property="og:description" content="泛型简介主要功能：让类型也能够作为参数，并在使用时确定参数。 为什么要使用泛型：因为列表中可以放入任意类型的元素，所以，一个元素放入再取出来之后，也就被抹去了原有的类型信息，被当作了Object 类型。想要恢复原有的类型，必须进行强制类型转换。如果不能确定元素确切的类型，那么强制类型转换就会有一个ClasCastException 异常。所以，强制类型转换不是一个鼓励使用的功能，我们可以使用泛型来">
+<meta property="og:site_name" content="Code World of KarlingLee">
+<meta property="og:description" content="泛型简介主要功能：让类型也能够作为参数，并在使用时确定参数。 为什么要使用泛型：因为列表中可以放入任意类型的元素，所以，一个元素放入再取出来之后，也就被抹去了原有的类型信息，被当作了Object 类型。想要恢复原有的类型，必须进行强制类型转换。如果不能确定元素确切的类型，那么强制类型转换就会有一个ClasCastException 异常。即，强制转换类型的错误只有在程序运行的时候才能看到。所以，强">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-12T01:37:38.962Z">
+<meta property="og:updated_time" content="2018-07-12T05:07:21.940Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 泛型">
-<meta name="twitter:description" content="泛型简介主要功能：让类型也能够作为参数，并在使用时确定参数。 为什么要使用泛型：因为列表中可以放入任意类型的元素，所以，一个元素放入再取出来之后，也就被抹去了原有的类型信息，被当作了Object 类型。想要恢复原有的类型，必须进行强制类型转换。如果不能确定元素确切的类型，那么强制类型转换就会有一个ClasCastException 异常。所以，强制类型转换不是一个鼓励使用的功能，我们可以使用泛型来">
+<meta name="twitter:description" content="泛型简介主要功能：让类型也能够作为参数，并在使用时确定参数。 为什么要使用泛型：因为列表中可以放入任意类型的元素，所以，一个元素放入再取出来之后，也就被抹去了原有的类型信息，被当作了Object 类型。想要恢复原有的类型，必须进行强制类型转换。如果不能确定元素确切的类型，那么强制类型转换就会有一个ClasCastException 异常。即，强制转换类型的错误只有在程序运行的时候才能看到。所以，强">
 
 
 
@@ -126,7 +126,7 @@
 
 
 
-  <title>Java 泛型 | Codes Zone of KarlingLee</title>
+  <title>Java 泛型 | Code World of KarlingLee</title>
   
 
 
@@ -156,7 +156,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Codes Zone of KarlingLee</span>
+        <span class="site-title">Code World of KarlingLee</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -272,7 +272,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Codes Zone of KarlingLee">
+      <meta itemprop="name" content="Code World of KarlingLee">
     </span>
 
     
@@ -356,7 +356,7 @@
 
       
         <h1 id="泛型简介"><a href="#泛型简介" class="headerlink" title="泛型简介"></a>泛型简介</h1><p>主要功能：让<code>类型也能够作为参数</code>，并在使用时确定参数。</p>
-<p>为什么要使用泛型：因为列表中可以放入任意类型的元素，所以，一个元素放入再取出来之后，也就被抹去了原有的类型信息，被当作了Object 类型。想要恢复原有的类型，必须进行强制类型转换。<br>如果不能确定元素确切的类型，那么强制类型转换就会有一个ClasCastException 异常。<br>所以，强制类型转换不是一个鼓励使用的功能，我们可以使用泛型来避免。</p>
+<p>为什么要使用泛型：因为列表中可以放入任意类型的元素，所以，一个元素放入再取出来之后，也就被抹去了原有的类型信息，被当作了Object 类型。想要恢复原有的类型，必须进行强制类型转换。<br>如果不能确定元素确切的类型，那么强制类型转换就会有一个ClasCastException 异常。<br>即，强制转换类型的错误只有在程序运行的时候才能看到。<br>所以，强制类型转换不是一个鼓励使用的功能，我们可以使用泛型来避免。</p>
 <p>不使用泛型，则有时必须使用强制类型转换。<br>尽量不要使用强制类型转换，因为它可能会造成异常。</p>
 <hr>
 <h1 id="未加泛型"><a href="#未加泛型" class="headerlink" title="未加泛型"></a>未加泛型</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.javaeasy.genericstypes;                        <span class="comment">// 程序所在的包</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;                                                <span class="comment">// 引入需要使用的类</span></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> com.javaeasy.compare.Student;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NoGenericsTypes</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Student stu = <span class="keyword">new</span> Student(<span class="string">"刘伟"</span>, <span class="number">1</span>); <span class="comment">// 创建一个Stusdent类的实例</span></span><br><span class="line">        List students = <span class="keyword">new</span> ArrayList();    <span class="comment">// 创建一个ArrayList的实例</span></span><br><span class="line">        students.add(stu);  <span class="comment">// 将stu放入List中</span></span><br><span class="line">        <span class="comment">// 得到第一个元素，强制类型转换</span></span><br><span class="line">        Student stuFromList = (Student) students.get(<span class="number">0</span>);</span><br><span class="line">        printStudentProps(stuFromList); <span class="comment">// 传递给printStudentProps()方法</span></span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printStudentProps</span><span class="params">(Student stu)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 输出stu对象的属性</span></span><br><span class="line">        System.out.println(<span class="string">"学生姓名："</span> + stu.getName());</span><br><span class="line">        System.out.println(<span class="string">"学生编号："</span> + stu.getNumber());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -512,7 +512,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tages/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

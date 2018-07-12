@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Java 重写与重载,Java 对象的比较," />
+  <meta name="keywords" content="Java 对象的比较,Java 重写与重载," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="hashcode()简介Object 类中的hashcode() 方法会根据对象所在的内存地址返回一个能够唯一代表这个对象的int 值。 String 类的hashcode() 会根据String 类的内容而生成一个int 值。它可以保证只有在两个String 对象的内容完全相同时，hashcode() 的返回值才会完全相同。 若返回值相同，即使这两个对象并不是同一个对象，也可以认为他们是相等的对">
-<meta name="keywords" content="Java 重写与重载,Java 对象的比较">
+<meta name="description" content="概述关于对象的相等，必须将“对象逻辑上相等”与“两个对象相同”区分开。对象的比较是确定两个对象是否在逻辑上相等，即通过equals() 方法判断两个对象是否代表同一个分东西。这与两个对象相同是不同的概念。  equals()：反映的是对象或变量具体的值，即两个对象里面包含的值–可能是对象的引用，也可能是值类型的值。 hashCode()：计算出对象实例的哈希码，并返回哈希码，又称为散列函数。根类O">
+<meta name="keywords" content="Java 对象的比较,Java 重写与重载">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java hashcode()方法与equals()方法">
+<meta property="og:title" content="Java 对象的比较 - hashcode()方法与equals()方法">
 <meta property="og:url" content="http://yoursite.com/2018/07/12/hashcode_equals/index.html">
-<meta property="og:site_name" content="Codes Zone of KarlingLee">
-<meta property="og:description" content="hashcode()简介Object 类中的hashcode() 方法会根据对象所在的内存地址返回一个能够唯一代表这个对象的int 值。 String 类的hashcode() 会根据String 类的内容而生成一个int 值。它可以保证只有在两个String 对象的内容完全相同时，hashcode() 的返回值才会完全相同。 若返回值相同，即使这两个对象并不是同一个对象，也可以认为他们是相等的对">
+<meta property="og:site_name" content="Code World of KarlingLee">
+<meta property="og:description" content="概述关于对象的相等，必须将“对象逻辑上相等”与“两个对象相同”区分开。对象的比较是确定两个对象是否在逻辑上相等，即通过equals() 方法判断两个对象是否代表同一个分东西。这与两个对象相同是不同的概念。  equals()：反映的是对象或变量具体的值，即两个对象里面包含的值–可能是对象的引用，也可能是值类型的值。 hashCode()：计算出对象实例的哈希码，并返回哈希码，又称为散列函数。根类O">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-12T03:45:33.831Z">
+<meta property="og:updated_time" content="2018-07-12T05:05:13.291Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java hashcode()方法与equals()方法">
-<meta name="twitter:description" content="hashcode()简介Object 类中的hashcode() 方法会根据对象所在的内存地址返回一个能够唯一代表这个对象的int 值。 String 类的hashcode() 会根据String 类的内容而生成一个int 值。它可以保证只有在两个String 对象的内容完全相同时，hashcode() 的返回值才会完全相同。 若返回值相同，即使这两个对象并不是同一个对象，也可以认为他们是相等的对">
+<meta name="twitter:title" content="Java 对象的比较 - hashcode()方法与equals()方法">
+<meta name="twitter:description" content="概述关于对象的相等，必须将“对象逻辑上相等”与“两个对象相同”区分开。对象的比较是确定两个对象是否在逻辑上相等，即通过equals() 方法判断两个对象是否代表同一个分东西。这与两个对象相同是不同的概念。  equals()：反映的是对象或变量具体的值，即两个对象里面包含的值–可能是对象的引用，也可能是值类型的值。 hashCode()：计算出对象实例的哈希码，并返回哈希码，又称为散列函数。根类O">
 
 
 
@@ -126,7 +126,7 @@
 
 
 
-  <title>Java hashcode()方法与equals()方法 | Codes Zone of KarlingLee</title>
+  <title>Java 对象的比较 - hashcode()方法与equals()方法 | Code World of KarlingLee</title>
   
 
 
@@ -156,7 +156,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Codes Zone of KarlingLee</span>
+        <span class="site-title">Code World of KarlingLee</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -272,7 +272,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Codes Zone of KarlingLee">
+      <meta itemprop="name" content="Code World of KarlingLee">
     </span>
 
     
@@ -280,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java hashcode()方法与equals()方法</h1>
+          <h1 class="post-title" itemprop="name headline">Java 对象的比较 - hashcode()方法与equals()方法</h1>
         
 
         <div class="post-meta">
@@ -355,7 +355,15 @@
       
 
       
-        <h1 id="hashcode"><a href="#hashcode" class="headerlink" title="hashcode()"></a>hashcode()</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Object 类中的hashcode() 方法会根据对象所在的<code>内存地址</code>返回一个能够<code>唯一</code>代表这个对象的<code>int</code> 值。</p>
+        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>关于对象的相等，必须将“对象逻辑上相等”与“两个对象相同”区分开。<br>对象的比较是确定两个对象是否在<code>逻辑上</code>相等，<br>即通过equals() 方法判断两个对象是否代表同一个分东西。<br>这与两个对象相同是不同的概念。</p>
+<ol>
+<li>equals()：反映的是对象或变量具体的值，即两个对象里面包含的值–可能是对象的引用，也可能是值类型的值。</li>
+<li>hashCode()：计算出对象实例的哈希码，并返回哈希码，又称为散列函数。根类Object的hashCode()方法的计算依赖于对象实例的D（内存地址），故每个Object对象的hashCode都是唯一的；当然，当对象所对应的类重写了hashCode()方法时，结果就截然不同了。</li>
+</ol>
+<p>之所以有hashCode方法，是因为在批量的对象比较中，hashCode要比equals来得快，很多集合都用到了hashCode，比如HashTable。</p>
+<p>两个obj，如果equals()相等，hashCode()一定相等。<br>两个obj，如果hashCode()相等，equals()不一定相等（Hash散列值有冲突的情况，虽然概率很低）。</p>
+<hr>
+<h1 id="hashcode"><a href="#hashcode" class="headerlink" title="hashcode()"></a>hashcode()</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Object 类中的hashcode() 方法会根据对象所在的<code>内存地址</code>返回一个能够<code>唯一</code>代表这个对象的<code>int</code> 值。</p>
 <p>String 类的hashcode() 会根据String 类的内容而生成一个int 值。它可以保证只有在两个String 对象的内容完全相同时，hashcode() 的返回值才会完全相同。</p>
 <p>若返回值相同，即使这两个对象并不是同一个对象，也可以认为他们是相等的对象。</p>
 <hr>
@@ -381,9 +389,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Java-重写与重载/" rel="tag"># Java 重写与重载</a>
-          
             <a href="/tags/Java-对象的比较/" rel="tag"># Java 对象的比较</a>
+          
+            <a href="/tags/Java-重写与重载/" rel="tag"># Java 重写与重载</a>
           
         </div>
       
@@ -511,7 +519,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tages/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -544,7 +552,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#hashcode"><span class="nav-number">1.</span> <span class="nav-text">hashcode()</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#equals"><span class="nav-number">2.</span> <span class="nav-text">equals()</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介-1"><span class="nav-number">2.1.</span> <span class="nav-text">简介</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#重写overide-equals-amp-hashcode"><span class="nav-number">3.</span> <span class="nav-text">重写overide equals() &amp; hashcode()</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hashcode"><span class="nav-number">2.</span> <span class="nav-text">hashcode()</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">2.1.</span> <span class="nav-text">简介</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#equals"><span class="nav-number">3.</span> <span class="nav-text">equals()</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介-1"><span class="nav-number">3.1.</span> <span class="nav-text">简介</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#重写overide-equals-amp-hashcode"><span class="nav-number">4.</span> <span class="nav-text">重写overide equals() &amp; hashcode()</span></a></li></ol></div>
             
 
           </div>
