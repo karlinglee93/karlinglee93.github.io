@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="生涯规划," />
+  <meta name="keywords" content="Java 类,Java 集合类框架,Java 泛型," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="想想自己，说厉害也可以说不厉害 本科时代，课本上学到过一些计算机知识 - 但由于不算作专业技能 - 随着时间的流逝也就忘掉了 考研期间，我以初试第一的身份进入了复试清楚的记得，查到成绩后的我激动的流下眼泪，大喊着我考了第一 记得是复试阶段，要用汇编语言写驱动单片机的程序整个寒假直至三月末复试前，自己抱着单片机，或在租的自习室或在学校的图书馆，边编程边驱动，一坐就是一天算是捡起了一些“编程知识”最后">
-<meta name="keywords" content="生涯规划">
+<meta name="description" content="认识Map健值对和List 不同（只能够通过int 类型的索引得到相应的元素），Map是用来处理健值对的。而Map 则允许使用任意的对象作为索引，来得到与之对应的对象。这个索引对象就是所谓的“键”，而与键对应的对象，就是所谓的“值”。Map 中，键和值都是Object 类型的引用。所以任何对象都可以用做键和值。 一个键只能对应一个值，一个值可以对应多个键。 常用方法1234567put(Objec">
+<meta name="keywords" content="Java 类,Java 集合类框架,Java 泛型">
 <meta property="og:type" content="article">
-<meta property="og:title" content="抉择">
-<meta property="og:url" content="http://yoursite.com/2018/07/08/职业规划/index.html">
+<meta property="og:title" content="Java Map接口">
+<meta property="og:url" content="http://yoursite.com/2018/07/12/map/index.html">
 <meta property="og:site_name" content="Codes Zone of KarlingLee">
-<meta property="og:description" content="想想自己，说厉害也可以说不厉害 本科时代，课本上学到过一些计算机知识 - 但由于不算作专业技能 - 随着时间的流逝也就忘掉了 考研期间，我以初试第一的身份进入了复试清楚的记得，查到成绩后的我激动的流下眼泪，大喊着我考了第一 记得是复试阶段，要用汇编语言写驱动单片机的程序整个寒假直至三月末复试前，自己抱着单片机，或在租的自习室或在学校的图书馆，边编程边驱动，一坐就是一天算是捡起了一些“编程知识”最后">
+<meta property="og:description" content="认识Map健值对和List 不同（只能够通过int 类型的索引得到相应的元素），Map是用来处理健值对的。而Map 则允许使用任意的对象作为索引，来得到与之对应的对象。这个索引对象就是所谓的“键”，而与键对应的对象，就是所谓的“值”。Map 中，键和值都是Object 类型的引用。所以任何对象都可以用做键和值。 一个键只能对应一个值，一个值可以对应多个键。 常用方法1234567put(Objec">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-08T09:24:21.958Z">
+<meta property="og:updated_time" content="2018-07-12T01:46:37.227Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="抉择">
-<meta name="twitter:description" content="想想自己，说厉害也可以说不厉害 本科时代，课本上学到过一些计算机知识 - 但由于不算作专业技能 - 随着时间的流逝也就忘掉了 考研期间，我以初试第一的身份进入了复试清楚的记得，查到成绩后的我激动的流下眼泪，大喊着我考了第一 记得是复试阶段，要用汇编语言写驱动单片机的程序整个寒假直至三月末复试前，自己抱着单片机，或在租的自习室或在学校的图书馆，边编程边驱动，一坐就是一天算是捡起了一些“编程知识”最后">
+<meta name="twitter:title" content="Java Map接口">
+<meta name="twitter:description" content="认识Map健值对和List 不同（只能够通过int 类型的索引得到相应的元素），Map是用来处理健值对的。而Map 则允许使用任意的对象作为索引，来得到与之对应的对象。这个索引对象就是所谓的“键”，而与键对应的对象，就是所谓的“值”。Map 中，键和值都是Object 类型的引用。所以任何对象都可以用做键和值。 一个键只能对应一个值，一个值可以对应多个键。 常用方法1234567put(Objec">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/07/08/职业规划/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/07/12/map/"/>
 
 
 
 
 
-  <title>抉择 | Codes Zone of KarlingLee</title>
+  <title>Java Map接口 | Codes Zone of KarlingLee</title>
   
 
 
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/08/职业规划/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/12/map/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Karling Lee">
@@ -280,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">抉择</h1>
+          <h1 class="post-title" itemprop="name headline">Java Map接口</h1>
         
 
         <div class="post-meta">
@@ -295,8 +295,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-08T17:16:32+08:00">
-                2018-07-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-12T09:38:39+08:00">
+                2018-07-12
               </time>
             
 
@@ -318,8 +318,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/随笔/" itemprop="url" rel="index">
-                    <span itemprop="name">随笔</span>
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
                   </a>
                 </span>
 
@@ -355,19 +355,13 @@
       
 
       
-        <p>想想自己，说厉害也可以说不厉害</p>
-<p>本科时代，<br>课本上学到过一些计算机知识 - 但由于不算作专业技能 - 随着时间的流逝也就忘掉了</p>
-<p>考研期间，<br>我以初试第一的身份进入了复试<br>清楚的记得，查到成绩后的我激动的流下眼泪，大喊着我考了第一</p>
-<p>记得是复试阶段，要用汇编语言写驱动单片机的程序<br>整个寒假直至三月末复试前，自己抱着单片机，<br>或在租的自习室或在学校的图书馆，边编程边驱动，一坐就是一天<br>算是捡起了一些“编程知识”<br>最后也保住了第一个位置，<br>这很厉害。</p>
-<p>厉害的同时，我又存在不厉害的地方</p>
-<p>读研期间，<br>在UI设计、前端、后端等职位中迷茫过好久，<br>最后“随着大溜” - 因为挣得多、发展好 - 准备成为后端工程师</p>
-<p>研一上，学了C++，<br>研一下，取得了计算机二级(C语言)的证书，<br>暑期，感觉做App会发展的更好，于是转战Java</p>
-<p>研二上，是个空档期，具体学了什么我忘记了，<br>寒假，感觉做深度学习会发展的更好，于是转战Tensorflow/Python，<br>研二下，感觉只会小语言是不够的，而且互联网公司特难进，还是学属于自动化专业的C++/Linux吧</p>
-<p>现在，<br>拿到了某公司的实习offer，但被迫转战Java</p>
-<p>我发现我有一个极大的错误，<br>就是只停留在了语言及其浅层的应用上，没有深入技术内部去挖掘去探索</p>
-<p>如今，<br>我找回了我几年前的本心，我想做前端，<br>因为我发现，<br>我细心规整的习惯是为前端代码而生的，<br>我还具有摄影天赋 - 有一定的色彩/构图的把控能力，<br>这对前端所需的布局、用户的视觉体验、UI的设计很有帮助</p>
-<p>有时我在想，<br>我还没有就业，一切的一切只是为自己以后的发展做规划，一切都还不晚<br>既然马上就要秋招了，我希望我能将前端工程师的梦想坚持下来，<br>通过这两个月的暑期实习了解前端知识，去充实Java基础，<br>遵循着本心，去做一名集后台开发能力、UI设计于一身的前端工程师！</p>
-
+        <h1 id="认识Map"><a href="#认识Map" class="headerlink" title="认识Map"></a>认识Map</h1><h2 id="健值对"><a href="#健值对" class="headerlink" title="健值对"></a>健值对</h2><p>和List 不同（只能够通过int 类型的索引得到相应的元素），Map是用来处理<code>健值对</code>的。<br>而Map 则允许使用<code>任意的对象</code>作为索引，来得到与之对应的对象。<br>这个索引对象就是所谓的“键”，而与键对应的对象，就是所谓的“值”。<br>Map 中，键和值都是Object 类型的引用。所以任何对象都可以用做键和值。</p>
+<p>一个键只能对应一个值，一个值可以对应多个键。</p>
+<h2 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">put(Object key, Object value)   <span class="comment">// 向Map 中放入一个健值对。若此键存在，则换新值。</span></span><br><span class="line"><span class="function">Object <span class="title">get</span><span class="params">(Object key)</span>  <span class="comment">// 根据键找值，没找到返回null。</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">containsKey</span><span class="params">(Object key)</span> <span class="comment">// 判断是否包含指定的键名。</span></span></span><br><span class="line"><span class="function"><span class="title">remove</span><span class="params">(Object Key)</span>  <span class="comment">// 删除键key 与其的值</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">size</span><span class="params">()</span>  <span class="comment">// 返回健值对的个数。</span></span></span><br><span class="line"><span class="function">Set <span class="title">keySet</span><span class="params">()</span>    <span class="comment">// 得到Map 中所有键的集合</span></span></span><br><span class="line"><span class="function">Collection <span class="title">values</span><span class="params">()</span> <span class="comment">// 得到Map 中所有值的集合</span></span></span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="HashMap-类实现Map-接口"><a href="#HashMap-类实现Map-接口" class="headerlink" title="HashMap 类实现Map 接口"></a>HashMap 类实现Map 接口</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.javaeasy.usemap;                        <span class="comment">// 例程在的包</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;                           <span class="comment">// 引入所需要的类</span></span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.javaeasy.compare.Student;</span><br><span class="line"><span class="keyword">import</span> com.javaeasy.genericstypes.NoGenericsTypes;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UseMap</span> </span>&#123;                               <span class="comment">// 例程</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;        <span class="comment">// main()方法</span></span><br><span class="line">        <span class="comment">// 创建一个HashMap实例，应用到泛型</span></span><br><span class="line">        Map&lt;String, Student&gt; students = <span class="keyword">new</span> HashMap&lt;String, Student&gt;();</span><br><span class="line">        Student stu1 = <span class="keyword">new</span> Student(<span class="string">"刘伟"</span>, <span class="number">1</span>);        <span class="comment">// 创建两个Student实例</span></span><br><span class="line">        Student stu2 = <span class="keyword">new</span> Student(<span class="string">"成秋"</span>, <span class="number">2</span>);</span><br><span class="line">        <span class="comment">// 以Student实例的name属性为键值，Student为值，将它们加入到Map中</span></span><br><span class="line">        students.put(stu1.getName(), stu1);</span><br><span class="line">        students.put(stu2.getName(), stu2);</span><br><span class="line">        String stuName = <span class="string">"成秋"</span>;              <span class="comment">// 要寻找的学生的名字</span></span><br><span class="line">        Student findStu = students.get(stuName);</span><br><span class="line">                                                <span class="comment">// 使用get()方法寻找对应的值</span></span><br><span class="line">        NoGenericsTypes.printStudentProps(findStu);     <span class="comment">// 输出结果</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="Hashtable-类实现Map-接口（略）"><a href="#Hashtable-类实现Map-接口（略）" class="headerlink" title="Hashtable 类实现Map 接口（略）"></a>Hashtable 类实现Map 接口（略）</h1>
       
     </div>
     
@@ -384,7 +378,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/生涯规划/" rel="tag"># 生涯规划</a>
+            <a href="/tags/Java-类/" rel="tag"># Java 类</a>
+          
+            <a href="/tags/Java-集合类框架/" rel="tag"># Java 集合类框架</a>
+          
+            <a href="/tags/Java-泛型/" rel="tag"># Java 泛型</a>
           
         </div>
       
@@ -397,8 +395,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/08/Markdown_base/" rel="next" title="Markdown 基本语法">
-                <i class="fa fa-chevron-left"></i> Markdown 基本语法
+              <a href="/2018/07/12/genericstypes/" rel="next" title="Java 泛型">
+                <i class="fa fa-chevron-left"></i> Java 泛型
               </a>
             
           </div>
@@ -407,8 +405,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/07/11/encryption/" rel="prev" title="Java 加密的常见方式">
-                Java 加密的常见方式 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/07/12/格局与体面/" rel="prev" title="格局与体面">
+                格局与体面 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -461,8 +459,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -526,6 +533,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#认识Map"><span class="nav-number">1.</span> <span class="nav-text">认识Map</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#健值对"><span class="nav-number">1.1.</span> <span class="nav-text">健值对</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用方法"><span class="nav-number">1.2.</span> <span class="nav-text">常用方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HashMap-类实现Map-接口"><span class="nav-number">2.</span> <span class="nav-text">HashMap 类实现Map 接口</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hashtable-类实现Map-接口（略）"><span class="nav-number">3.</span> <span class="nav-text">Hashtable 类实现Map 接口（略）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
