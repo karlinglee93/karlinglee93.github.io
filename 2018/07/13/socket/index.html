@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java Socket,TCP/IP,UDP," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="昨晚，Apple 发布了新款Macbook Pro，采用全新第八代Intel 处理器，Retina 显示屏中加入原彩显示技术，第三代蝶式静音键盘，可以说性能更加强劲，可以达到质的飞跃。新款最吸引我的是原彩显示技术，它可以根据环境光自动调节白平衡，修图的时候一定很棒。至于性能提升接近2倍的数字，我不是很在意。因为我的MacBook Pro 2017 还没有被我发挥到极致呢！我还是爱我的mbp 20">
+<meta name="keywords" content="Java Socket,TCP&#x2F;IP,UDP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java Socket">
+<meta property="og:url" content="http://yoursite.com/2018/07/13/socket/index.html">
+<meta property="og:site_name" content="Code World of KarlingLee">
+<meta property="og:description" content="昨晚，Apple 发布了新款Macbook Pro，采用全新第八代Intel 处理器，Retina 显示屏中加入原彩显示技术，第三代蝶式静音键盘，可以说性能更加强劲，可以达到质的飞跃。新款最吸引我的是原彩显示技术，它可以根据环境光自动调节白平衡，修图的时候一定很棒。至于性能提升接近2倍的数字，我不是很在意。因为我的MacBook Pro 2017 还没有被我发挥到极致呢！我还是爱我的mbp 20">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-13T01:04:13.587Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java Socket">
+<meta name="twitter:description" content="昨晚，Apple 发布了新款Macbook Pro，采用全新第八代Intel 处理器，Retina 显示屏中加入原彩显示技术，第三代蝶式静音键盘，可以说性能更加强劲，可以达到质的飞跃。新款最吸引我的是原彩显示技术，它可以根据环境光自动调节白平衡，修图的时候一定很棒。至于性能提升接近2倍的数字，我不是很在意。因为我的MacBook Pro 2017 还没有被我发挥到极致呢！我还是爱我的mbp 20">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'karlinglee93'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/07/13/socket/"/>
+
+
+
+
+
+  <title>Java Socket | Code World of KarlingLee</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Code World of KarlingLee</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/13/socket/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Karling Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code World of KarlingLee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java Socket</h1>
+        
+
+        <div class="post-meta">
+
+            
+            
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-13T08:45:03+08:00">
+                2018-07-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>昨晚，Apple 发布了新款Macbook Pro，采用全新第八代Intel 处理器，Retina 显示屏中加入原彩显示技术，第三代蝶式静音键盘，可以说性能更加强劲，可以达到质的飞跃。<br>新款最吸引我的是原彩显示技术，它可以根据环境光自动调节白平衡，修图的时候一定很棒。<br>至于性能提升接近2倍的数字，我不是很在意。<br>因为我的MacBook Pro 2017 还没有被我发挥到极致呢！<br>我还是爱我的mbp 2017!</p>
+</blockquote>
+<h1 id="IP-地址和端口号"><a href="#IP-地址和端口号" class="headerlink" title="IP 地址和端口号"></a>IP 地址和端口号</h1><p>两台电脑进行通信的时候，至少需要两个信息：IP 地址和端口号。<br>格式：IP 地址:端口号</p>
+<h2 id="IP-地址-计算机的标识"><a href="#IP-地址-计算机的标识" class="headerlink" title="IP 地址 - 计算机的标识"></a>IP 地址 - 计算机的标识</h2><ol>
+<li><p>什么是IP 地址<br>IP：Internet Protocol，互联网协议。<br>由4个无符号的字节组成的一串数字。<br>最小的IP：0.0.0.0；最大的IP：255.255.255.255</p>
+</li>
+<li><p>自己的IP 地址<br>127.0.0.1</p>
+</li>
+</ol>
+<h2 id="端口号-通信的窗口"><a href="#端口号-通信的窗口" class="headerlink" title="端口号 - 通信的窗口"></a>端口号 - 通信的窗口</h2><ol>
+<li><p>端口的概念<br>端口号：Port Number，可以让一台电脑同时传输多路数据。<br>每台电脑都有65536个端口，范围是0 ～ 65535</p>
+</li>
+<li><p>端口的作用<br>端口是数据传输的窗口。使用不同的端口传递数据的时候，彼此之间互不影响。</p>
+</li>
+<li><p>网络，IP 地址和端口号</p>
+</li>
+</ol>
+<hr>
+<h1 id="Java-TCP-编程"><a href="#Java-TCP-编程" class="headerlink" title="Java TCP 编程"></a>Java TCP 编程</h1><p>Java Socket 编程分为TCP 和UDP，都在java.net 这个包中</p>
+<ol>
+<li>TCP(Transmission Control Protocol/Internet Protocol)：传输控制协议/网间协议</li>
+<li>UDP(User Data Protocol)：用户数据报协议</li>
+</ol>
+<p>都是数据传输协议，也是数据传输的方式。</p>
+<h2 id="TCP-的数据传输模式"><a href="#TCP-的数据传输模式" class="headerlink" title="TCP 的数据传输模式"></a>TCP 的数据传输模式</h2><p>在TCP 协议中，有服务端（Server 端）和客户端（Client 端）。<br>TCP 传输数据的过程：服务器端程序在本机的某个端口上监听，等待客户端连接到此端口，一旦客户端连接到了此端口，服务器端和客户端就可以进行数据传输了，数据传输结束后，关闭连接。</p>
+<h2 id="第一个TCP-小程序"><a href="#第一个TCP-小程序" class="headerlink" title="第一个TCP 小程序"></a>第一个TCP 小程序</h2><pre><code>Socket相关类，都在java.net 包中
+InetAddress 代表IP 地址的类
+ServerSocket 代表服务器端的类
+Socket 代表客户端/连接的类
+</code></pre><h3 id="InetAddress-类"><a href="#InetAddress-类" class="headerlink" title="InetAddress 类"></a>InetAddress 类</h3><p>其构造方法是私有的，故我们不能通过new 关键字来创建一个InetAddress 类的实例。<br>但InetAddress 类有几个静态方法，可以用于生成InetAddress 的实例。</p>
+<p>比如<code>getByAddress(byte[])</code> 这个静态方法，其参数是一个byte 数组。<br>一个IP 地址是由4 个字节组成的，只要将这4 个字节顺序放在一个byte 数组中，然后将它作为参数传递给这个方法，就可以得到一个IP 地址。</p>
+<h3 id="ServerSocket-类"><a href="#ServerSocket-类" class="headerlink" title="ServerSocket 类"></a>ServerSocket 类</h3><p>代表服务端。它有以下几个方法：</p>
+<pre><code>1. 构造方法ServerSocket(int)：参数是一个端口号，ServerSocket 的实例创建出来后，会在指定的端口监听。
+2. accept()：在指定的端口等待客户端连接过来。在客户端连接过来之前，当前线程是处于挂起状态的，即如果没有客户端连接过来，这个方法不会执行结束。返回一个Socket 类型的实例。
+3. close()：结束监听，释放资源。
+</code></pre><h3 id="Socket-类"><a href="#Socket-类" class="headerlink" title="Socket 类"></a>Socket 类</h3><p>可以看作是两个端口之间的连接。两台电脑之间的通信也使用这个类。</p>
+<p>创建Socket 类实例的两种方式：</p>
+<pre><code>1. ServerSocket 类的accept() 方法会返回一个Socket 实例。
+2. 通过Socket 类的构造方法创建。
+</code></pre><p>主要的方法：</p>
+<pre><code>1. 构造方法Socket(InetAddress, int)：指定Socket 需要连接的远程IP 地址和端口。
+2. getInputStream()：返回值是一个InputStream 的实例，通过输入流可以读取信息。
+3. getOutputStream()：返回值是一个OutputStream 的实例，通过输出流可以向远程计算机输入信息。
+</code></pre><h3 id="服务器端程序"><a href="#服务器端程序" class="headerlink" title="服务器端程序"></a>服务器端程序</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.javaeasy.learnsockettcp;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.BufferedReader;						<span class="comment">// 引入需要使用的类</span></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStreamReader;</span><br><span class="line"><span class="keyword">import</span> java.io.OutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.PrintWriter;</span><br><span class="line"><span class="keyword">import</span> java.net.ServerSocket;</span><br><span class="line"><span class="keyword">import</span> java.net.Socket;</span><br><span class="line"><span class="keyword">import</span> java.net.UnknownHostException;</span><br><span class="line"></span><br><span class="line"><span class="comment">//服务器端程序</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Server</span> </span>&#123;								</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;		<span class="comment">// main()方法</span></span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			  ServerSocket ss = <span class="keyword">new</span> ServerSocket(<span class="number">7777</span>);</span><br><span class="line">											<span class="comment">// （1）在本机的7777端口监听</span></span><br><span class="line">			  System.out.println(<span class="string">"服务器端在7777端口监听……"</span>); </span><br><span class="line">			  Socket s = ss.accept();		<span class="comment">// （2）等待客户端连接到7777端口</span></span><br><span class="line">			  <span class="comment">// 如果没有客户端连接过来，accept()方法不会返回</span></span><br><span class="line">			  System.out.println(<span class="string">"已有客户端连接过来，开始进行通信……"</span>);</span><br><span class="line">			  </span><br><span class="line">			  InputStream in = s.getInputStream();	<span class="comment">// （3）得到输入流</span></span><br><span class="line">			  OutputStream out = s.getOutputStream();<span class="comment">// （4）得到输出流</span></span><br><span class="line">			  </span><br><span class="line">			  <span class="comment">// 使用PrintWriter向客户端输出数据</span></span><br><span class="line">			  PrintWriter pw = <span class="keyword">new</span> PrintWriter(out);	</span><br><span class="line">			  System.out.println(<span class="string">"正在向客户端发送消息……"</span>);</span><br><span class="line">			  pw.write(<span class="string">"客户端，你好，这里是服务器端。\r\n"</span>);</span><br><span class="line">			  pw.flush();				<span class="comment">// 强制发送数据</span></span><br><span class="line">			  System.out.println(<span class="string">"向客户端发送消息完成。"</span>);</span><br><span class="line">			  </span><br><span class="line">			  <span class="comment">// 使用BufferedReader读取客户端发送来的数据</span></span><br><span class="line">			  BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(in));</span><br><span class="line">			  String response = br.readLine();</span><br><span class="line">			  System.out.println(<span class="string">"======下面是客户端发来的消息======"</span>);</span><br><span class="line">			  System.out.println(response);</span><br><span class="line">			  System.out.println(<span class="string">"================================"</span>);</span><br><span class="line">			  </span><br><span class="line">			  <span class="comment">// （5）调用close()方法释放资源</span></span><br><span class="line">			  br.close();					</span><br><span class="line">			  pw.close();</span><br><span class="line">			  s.close();</span><br><span class="line">			  ss.close();</span><br><span class="line">		&#125; <span class="keyword">catch</span> (UnknownHostException e) &#123;</span><br><span class="line">			  System.out.println(<span class="string">"无法找到相应的机器，错误信息。"</span> + e.getMessage());</span><br><span class="line">		&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">			 System.out.println(<span class="string">"数据传输出现异常："</span> + e.getMessage());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="客户端程序"><a href="#客户端程序" class="headerlink" title="客户端程序"></a>客户端程序</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.javaeasy.learnsockettcp;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.BufferedReader;					<span class="comment">// 引入需要使用的类</span></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStreamReader;</span><br><span class="line"><span class="keyword">import</span> java.io.OutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.PrintWriter;</span><br><span class="line"><span class="keyword">import</span> java.net.InetAddress;</span><br><span class="line"><span class="keyword">import</span> java.net.Socket;</span><br><span class="line"><span class="keyword">import</span> java.net.UnknownHostException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 与本机进行通信</span></span><br><span class="line">		<span class="keyword">byte</span>[] addr = <span class="keyword">new</span> <span class="keyword">byte</span>[] &#123; <span class="number">127</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span> &#125;;		</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			InetAddress local = InetAddress.getByAddress(addr);</span><br><span class="line">			Socket s = <span class="keyword">new</span> Socket(local, <span class="number">7777</span>);</span><br><span class="line">			</span><br><span class="line">			InputStream in = s.getInputStream();</span><br><span class="line">			OutputStream out = s.getOutputStream();</span><br><span class="line">			</span><br><span class="line">			BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(in));</span><br><span class="line">			String response = br.readLine();</span><br><span class="line">			System.out.println(<span class="string">"======下面是服务端发来的消息======"</span>);</span><br><span class="line">			System.out.println(response);</span><br><span class="line">			System.out.println(<span class="string">"================================"</span>);</span><br><span class="line">			System.out.println(<span class="string">"正在向服务器端发送消息……"</span>);</span><br><span class="line">			</span><br><span class="line">			PrintWriter pw = <span class="keyword">new</span> PrintWriter(out);</span><br><span class="line">			pw.write(<span class="string">"服务器你好，这里是客户端。"</span>);</span><br><span class="line">			pw.flush();</span><br><span class="line">			</span><br><span class="line">			pw.close();</span><br><span class="line">			br.close();</span><br><span class="line">			s.close();</span><br><span class="line">			System.out.println(<span class="string">"向服务器端发送消息结束。"</span>);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (UnknownHostException e) &#123;</span><br><span class="line">			System.out.println(<span class="string">"无法找到相应的机器，错误信息。"</span> + e.getMessage());</span><br><span class="line">		&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">			System.out.println(<span class="string">"数据传输出现异常："</span> + e.getMessage());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Java-UDP-编程（略）"><a href="#Java-UDP-编程（略）" class="headerlink" title="Java UDP 编程（略）"></a>Java UDP 编程（略）</h2><p>UDP 是与TCP 并列的一种数据传输协议</p>
+<p>UDP 中没有服务器端和客户端，有数据的发送端和接收端。<br>其发送数据如同发电报，对于一段需要发送的数据，每次都生成一个“数据包”实例，然后发送出去。</p>
+<p>常用类：</p>
+<pre><code>1. InetAddress
+2. DatagramSocket
+3. DatagramPacket
+</code></pre><h1 id="TCP-和UDP-的区别"><a href="#TCP-和UDP-的区别" class="headerlink" title="TCP 和UDP 的区别"></a>TCP 和UDP 的区别</h1><p>UDP 程序比TCP 程序相对简单，每次的数据传输都是独立的，TCP 的数据传输是连续的。</p>
+<p>TCP 像生活中的电话，在建立连接后，数据传输的线路就确定了，不能更改了。<br>UDP 像生活中的信件，数据的目的是保持在DatagramPacket 实例中。DatagramPacket 像快递员，只负责将数据传输到目的地，没有固定的连接。</p>
+<p>TCP 主要用来传出大量的、有序的数据。比如文件。<br>UDP 用来传输少量的、对顺序没有严格要求的数据。比如聊天、视频信息。<br>后者虽然是一种不可靠的网络协议，但其具有速度优势，而TCP 更安全可靠一些，但会有额外的系统开销。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java-Socket/" rel="tag"># Java Socket</a>
+          
+            <a href="/tags/TCP-IP/" rel="tag"># TCP/IP</a>
+          
+            <a href="/tags/UDP/" rel="tag"># UDP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/13/字符集/" rel="next" title="Java 字符集">
+                <i class="fa fa-chevron-left"></i> Java 字符集
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/images/avatar.jpg"
+                alt="Karling Lee" />
+            
+              <p class="site-author-name" itemprop="name">Karling Lee</p>
+              <p class="site-description motion-element" itemprop="description">Java, Web, AI</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tages/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#IP-地址和端口号"><span class="nav-number">1.</span> <span class="nav-text">IP 地址和端口号</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#IP-地址-计算机的标识"><span class="nav-number">1.1.</span> <span class="nav-text">IP 地址 - 计算机的标识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#端口号-通信的窗口"><span class="nav-number">1.2.</span> <span class="nav-text">端口号 - 通信的窗口</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-TCP-编程"><span class="nav-number">2.</span> <span class="nav-text">Java TCP 编程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-的数据传输模式"><span class="nav-number">2.1.</span> <span class="nav-text">TCP 的数据传输模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一个TCP-小程序"><span class="nav-number">2.2.</span> <span class="nav-text">第一个TCP 小程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#InetAddress-类"><span class="nav-number">2.2.1.</span> <span class="nav-text">InetAddress 类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ServerSocket-类"><span class="nav-number">2.2.2.</span> <span class="nav-text">ServerSocket 类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Socket-类"><span class="nav-number">2.2.3.</span> <span class="nav-text">Socket 类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器端程序"><span class="nav-number">2.2.4.</span> <span class="nav-text">服务器端程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端程序"><span class="nav-number">2.2.5.</span> <span class="nav-text">客户端程序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-UDP-编程（略）"><span class="nav-number">2.3.</span> <span class="nav-text">Java UDP 编程（略）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-和UDP-的区别"><span class="nav-number">3.</span> <span class="nav-text">TCP 和UDP 的区别</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Karling Lee</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
